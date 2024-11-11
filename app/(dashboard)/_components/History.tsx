@@ -45,7 +45,7 @@ function History({ userSettings }: { userSettings: UserSettings }) {
     historyDataQuery.data && historyDataQuery.data.length > 0;
 
   return (
-    <div className="container">
+    <div className="w-full p-6">
       <h2 className="mt-12 text-3xl font-bold">
         <Card className="col-span-12 mt-2 w-full">
           <CardHeader className="gap-2">

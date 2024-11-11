@@ -5,6 +5,7 @@ import { z } from "zod";
 
 export async function GET(request: Request) {
   const user = await currentUser();
+
   if (!user) {
     redirect("/sign-in");
   }
@@ -12,7 +13,8 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const paramType = searchParams.get("type");
 
-  const validator = z.enum(["expense", "income"]);
+  const validator = z.enum(["income", "expense"]);
+
   const queryParams = validator.safeParse(paramType);
   if (!queryParams.success) {
     return Response.json(queryParams.error, {

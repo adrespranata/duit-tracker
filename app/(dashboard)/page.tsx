@@ -9,6 +9,7 @@ import History from "./_components/History";
 
 export default async function Page() {
   const user = await currentUser();
+
   if (!user) {
     redirect("/sign-in");
   }

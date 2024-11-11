@@ -19,19 +19,18 @@ model UserSettings {
 }
 
 model Category {
+  name   String
+  userId String
+  icon   String
+  type   String @default("income")
+
   createdAt DateTime @default(now())
-  name      String
-  userId    String
-  icon      String
-  type      String   @default("income")
 
   @@unique([name, userId, type])
 }
 
 model Transaction {
-  id       String   @id @default(uuid())
-  createAt DateTime @default(now())
-  UpdateAt DateTime @default(now())
+  id String @id @default(uuid())
 
   amount      Float
   description String
@@ -41,6 +40,9 @@ model Transaction {
 
   category     String
   categoryIcon String
+
+  createAt DateTime @default(now())
+  UpdateAt DateTime @default(now())
 }
 
 model MonthHistory {

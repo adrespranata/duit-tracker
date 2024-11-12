@@ -20,6 +20,7 @@ import {
 } from "recharts";
 import { cn } from "@/lib/utils";
 import CountUp from "react-countup";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function History({ userSettings }: { userSettings: UserSettings }) {
   const [timeframe, setTimeframe] = useState<Timeframe>("month");
@@ -58,20 +59,40 @@ function History({ userSettings }: { userSettings: UserSettings }) {
               />
 
               <div className="flex h-10 gap-2">
+                {/* Badge for Income */}
                 <Badge
                   variant={"outline"}
                   className="flex items-center gap-2 text-sm"
                 >
-                  <div className="h-4 w-4 rounded-full bg-emerald-500"></div>
-                  Income
+                  {historyDataQuery.isFetching ? (
+                    <>
+                      <Skeleton className="h-4 w-4 bg-emerald-500 rounded-full" />
+                      <Skeleton className="h-4 w-16 bg-gray-300 rounded-md" />
+                    </>
+                  ) : (
+                    <>
+                      <div className="h-4 w-4 rounded-full bg-emerald-500" />
+                      Income
+                    </>
+                  )}
                 </Badge>
 
+                {/* Badge for Expense */}
                 <Badge
                   variant={"outline"}
                   className="flex items-center gap-2 text-sm"
                 >
-                  <div className="h-4 w-4 rounded-full bg-red-500"></div>
-                  Expense
+                  {historyDataQuery.isFetching ? (
+                    <>
+                      <Skeleton className="h-4 w-4 bg-red-500 rounded-full" />
+                      <Skeleton className="h-4 w-16 bg-gray-300 rounded-md" />
+                    </>
+                  ) : (
+                    <>
+                      <div className="h-4 w-4 rounded-full bg-red-500" />
+                      Expense
+                    </>
+                  )}
                 </Badge>
               </div>
             </CardTitle>

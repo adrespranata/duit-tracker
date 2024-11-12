@@ -32,7 +32,7 @@ export function NavMain({ items }: NavMainProps) {
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={item.title}>
                 <a href={item.url} className="flex items-center gap-2">
-                  <item.icon className="icon-class" />
+                  <item.icon />
                   <span>{item.title}</span>
                 </a>
               </SidebarMenuButton>

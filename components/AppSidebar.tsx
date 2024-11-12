@@ -4,16 +4,12 @@ import React from "react";
 import { Home, TableOfContents, Notebook } from "lucide-react";
 import {
   Sidebar,
-  SidebarContent,
-  // SidebarGroup,
-  // SidebarGroupContent,
-  // SidebarGroupLabel,
   SidebarHeader,
-  // SidebarMenu,
+  SidebarFooter,
+  SidebarContent,
 } from "@/components/ui/sidebar";
 import { NavUser } from "./NavUser";
 import { NavMain } from "./NavMain";
-
 
 const data = {
   user: {
@@ -58,6 +54,9 @@ function DesktopNavbar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={data.user} />
+      </SidebarFooter>
     </Sidebar>
   );
 }

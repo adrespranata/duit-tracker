@@ -42,13 +42,36 @@ export async function DeleteTransaction(id: string) {
         },
       },
       data: {
+        ...(transaction.type === "income" && {
+          income: {
+            decrement: transaction.amount,
+          },
+        }),
         ...(transaction.type === "expense" && {
           expense: {
             decrement: transaction.amount,
           },
         }),
+      },
+    }),
+
+    // Update year history
+    prisma.yearHistory.update({
+      where: {
+        month_year_userId: {
+          userId: user.id,
+          month: transaction.date.getUTCMonth(),
+          year: transaction.date.getUTCFullYear(),
+        },
+      },
+      data: {
         ...(transaction.type === "income" && {
           income: {
+            decrement: transaction.amount,
+          },
+        }),
+        ...(transaction.type === "expense" && {
+          expense: {
             decrement: transaction.amount,
           },
         }),
